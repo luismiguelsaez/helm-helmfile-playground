@@ -1,0 +1,37 @@
+---
+
+auth:
+  enabled: false
+
+architecture: standalone
+
+podAnnotations: {}
+
+metrics:
+  enabled: true
+  containerPort: 9216
+  service:
+    annotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "9216"
+      prometheus.io/path: "/metrics"
+    type: ClusterIP
+    port: 9216
+  serviceMonitor:
+    enabled: true
+    namespace: monitoring
+    additionalLabels:
+      release: prometheus
+  prometheusRule:
+    enabled: true
+    namespace: monitoring
+    rules:
+      - name: example
+        rules:
+          - alert: HighRequestLatency
+            expr: job:request_latency_seconds:mean5m{job="myjob"} > 0.5
+            for: 10m
+            labels:
+              severity: page
+            annotations:
+              summary: High request latency
