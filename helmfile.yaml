@@ -23,13 +23,13 @@ releases:
     version: 10.11.1
     values:
       - values/mongodb.yaml
-  #- name: mongodb-exporter
-  #  namespace: mongodb
-  #  chart: prometheus-community/prometheus-mongodb-exporter
-  #  version: 2.8.1
-  #  set:
-  #    - name: mongodb.uri
-  #      value: mongodb://mongodb.mongodb:27017
-  #    - name: serviceMonitor.additionalLabels.release
-  #      value: prometheus
-#
+  - name: mongodb-exporter
+    installed: false
+    namespace: mongodb
+    chart: prometheus-community/prometheus-mongodb-exporter
+    version: 2.8.1
+    set:
+      - name: mongodb.uri
+        value: mongodb://mongodb.mongodb:27017
+      - name: serviceMonitor.additionalLabels.release
+        value: prometheus
