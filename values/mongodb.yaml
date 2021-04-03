@@ -31,10 +31,10 @@ metrics:
     rules:
       - name: MongoDBExample
         rules:
-          - alert: HighRequestLatency
-            expr: job:request_latency_seconds:mean5m{job="myjob"} > 0.5
-            for: 10m
+          - alert: HighActiveConnectionCount
+            expr: mongodb_connections{job="mongodb-metrics",state="active"} > 1000
+            for: 1m
             labels:
               severity: page
             annotations:
-              summary: High request latency
+              summary: Higch active connection count
