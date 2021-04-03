@@ -21,12 +21,13 @@ metrics:
     enabled: true
     namespace: monitoring
     additionalLabels:
-      release: prometheus
+      # https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack#prometheusioscrape
+      release: prometheus-stack
   prometheusRule:
     enabled: true
     namespace: monitoring
     rules:
-      - name: example
+      - name: MongoDBExample
         rules:
           - alert: HighRequestLatency
             expr: job:request_latency_seconds:mean5m{job="myjob"} > 0.5
