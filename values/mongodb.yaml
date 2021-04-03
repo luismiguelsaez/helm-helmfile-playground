@@ -26,6 +26,8 @@ metrics:
   prometheusRule:
     enabled: true
     namespace: monitoring
+    additionalLabels:
+      release: prometheus-stack
     rules:
       - name: MongoDBExample
         rules:
