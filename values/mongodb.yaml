@@ -22,13 +22,13 @@ metrics:
     namespace: monitoring
     additionalLabels:
       # https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack#prometheusioscrape
-      release: prometheus-stack
+      release: prometheus
   prometheusRule:
     enabled: true
     namespace: monitoring
     additionalLabels:
       app: mongodb
-      release: prometheus-stack
+      release: prometheus
     rules:
       - name: mongodb
         rules:
@@ -38,4 +38,5 @@ metrics:
             labels:
               severity: warning
             annotations:
-              message: High active connection count, check nodes for slowqueries
+              message: |
+                High active connection count, check nodes for slowqueries
