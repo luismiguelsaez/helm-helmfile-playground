@@ -37,4 +37,4 @@ metrics:
             labels:
               severity: page
             annotations:
-              summary: Higch active connection count
+              summary: High active connection count
