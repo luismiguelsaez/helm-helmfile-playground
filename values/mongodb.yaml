@@ -27,14 +27,15 @@ metrics:
     enabled: true
     namespace: monitoring
     additionalLabels:
+      app: mongodb
       release: prometheus-stack
     rules:
-      - name: MongoDBExample
+      - name: mongodb
         rules:
           - alert: HighActiveConnectionCount
             expr: mongodb_connections{job="mongodb-metrics",state="active"} > 1000
-            for: 1m
+            for: 10m
             labels:
-              severity: page
+              severity: warning
             annotations:
-              summary: High active connection count
+              message: High active connection count, check nodes for slowqueries
