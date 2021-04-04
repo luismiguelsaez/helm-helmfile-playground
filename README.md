@@ -9,7 +9,7 @@ helm plugin install https://github.com/databus23/helm-diff
 ```
 - Kubernetes cluster running, for example kind local cluster
 ```
-kind create cluster --name testing
+kind create cluster --config kind/ingress-enabled.yaml --name testing
 ```
 
 ## Deploy stack
