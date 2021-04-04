@@ -17,6 +17,12 @@ kind create cluster --name testing
 helmfile sync
 ```
 
+## Check Prometheus current configuration
+Checking the `Prometheus`object, you can review the `serviceMonitor` and `rulesSelector`:
+```
+k get prometheus prometheus-kube-prometheus-prometheus -oyaml -n monitoring
+```
+
 ## Connect to Prometheus dashboard
 ```
 k port-forward svc/prometheus-kube-prometheus-prometheus 9090 -n monitoring

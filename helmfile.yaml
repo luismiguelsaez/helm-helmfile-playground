@@ -10,7 +10,7 @@ repositories:
 
 releases:
   # k create namespace monitoring
-  # helm install --version 14.4.0 prometheus prometheus-community/kube-prometheus-stack -n monitoring
+  # helm install --version 14.4.0 prometheus prometheus-community/kube-prometheus-stack -f values/prometheus.yaml -n monitoring
   - name: prometheus
     installed: true
     namespace: monitoring
