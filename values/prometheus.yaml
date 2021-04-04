@@ -1,0 +1,8 @@
+---
+
+prometheus:
+  prometheusSpec:
+    ruleNamespaceSelector: {}
+    ruleSelector: {}
+    serviceMonitorNamespaceSelector: {}
+    serviceMonitorSelector: {}

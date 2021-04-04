@@ -27,8 +27,9 @@ metrics:
     enabled: true
     namespace: monitoring
     additionalLabels:
-      app: mongodb
+      app: kube-prometheus-stack
       release: prometheus
+      role: server-rules
     rules:
       - name: mongodb
         rules:

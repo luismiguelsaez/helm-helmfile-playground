@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: mongodb
+  labels:
+    app: kube-prometheus-stack
+    release: prometheus
+    role: server-rules
+  annotations:
+    meta.helm.sh/release-name: prometheus
+    meta.helm.sh/release-namespace: monitoring
+spec:
+  groups:
+  - name: mongodb
+    rules:
+      - alert: HighActiveConnectionCount
+        expr: mongodb_connections{job="mongodb-metrics",state="active"} > 1000
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          message: |
+            High active connection count, check nodes for slowqueries

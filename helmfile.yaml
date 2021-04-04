@@ -16,6 +16,8 @@ releases:
     namespace: monitoring
     chart: prometheus-community/kube-prometheus-stack
     version: 14.5.0
+    values:
+      - values/prometheus.yaml
   # k create namespace mongodb
   # helm install --version 10.11.1 mongodb bitnami/mongodb -f values/mongodb.yaml -n mongodb
   - name: mongodb
