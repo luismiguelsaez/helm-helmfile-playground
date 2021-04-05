@@ -23,7 +23,12 @@ Checking the `Prometheus`object, you can review the `serviceMonitor` and `rulesS
 k get prometheus prometheus-kube-prometheus-prometheus -oyaml -n monitoring
 ```
 
-## Connect to Prometheus dashboard
+## Connect to Prometheus dashboard on http://localhost:9090
 ```
 k port-forward svc/prometheus-kube-prometheus-prometheus 9090 -n monitoring
+```
+
+## Connect to Grafana dashboard on http://localhost:8080 ( admin/prom-operator )
+```
+k port-forward svc/prometheus-grafana 8080:80 -n monitoring
 ```
