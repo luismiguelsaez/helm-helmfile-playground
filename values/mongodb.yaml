@@ -36,14 +36,13 @@ metrics:
     rules:
       - name: mongodb
         rules:
-          - alert: InstanceUp
-            expr: mongodb_up{job="mongodb-metrics",state="active"} < 1
-            for: 1m
+          - alert: MongodbReplicationLag
+            expr: mongodb_mongod_replset_member_optime_date{state="PRIMARY"} - ON (set) mongodb_mongod_replset_member_optime_date{state="SECONDARY"} > 10
+            for: 0m
             labels:
               severity: critical
             annotations:
-              message: |
-                Instance down
+              summary: MongoDB replication lag greater than 10ms
           - alert: HighActiveConnectionCount
             expr: mongodb_connections{job="mongodb-metrics",state="active"} > 1000
             for: 10m
