@@ -3,6 +3,16 @@
 prometheus:
   prometheusSpec:
     ruleNamespaceSelector: {}
-    ruleSelector: {}
+    ruleSelector:
+      matchLabels:
+        release: prometheus
     serviceMonitorNamespaceSelector: {}
-    serviceMonitorSelector: {}
+    serviceMonitorSelector:
+      matchLabels:
+        release: prometheus
+
+grafana:
+  enabled: true
+  adminPassword: prom-operator
+  defaultDashboardsEnabled: true
+  additionalDataSources: []

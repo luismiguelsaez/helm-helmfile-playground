@@ -27,11 +27,18 @@ metrics:
     enabled: true
     namespace: monitoring
     additionalLabels:
-      app: kube-prometheus-stack
       release: prometheus
     rules:
       - name: mongodb
         rules:
+          - alert: Up
+            expr: mongodb_up{job="mongodb-metrics",state="active"} < 1
+            for: 1m
+            labels:
+              severity: critical
+            annotations:
+              message: |
+                No instances UP
           - alert: HighActiveConnectionCount
             expr: mongodb_connections{job="mongodb-metrics",state="active"} > 1000
             for: 10m
@@ -40,3 +47,11 @@ metrics:
             annotations:
               message: |
                 High active connection count, check nodes for slowqueries
+          - alert: MetricsWTimeouts
+            expr: mongodb_mongod_metrics_get_last_error_wtimeouts_total{job="mongodb-metrics"} > 0
+            for: 10m
+            labels:
+              severity: warning
+            annotations:
+              message: |
+                Timeouts while getting metrics, check mongodb instance
