@@ -43,7 +43,7 @@ metrics:
               severity: critical
             annotations:
               message: |
-                Instance {{ $labels.namespace }}/{{ $labels.pod }} down
+                Instance down
           - alert: HighActiveConnectionCount
             expr: mongodb_connections{job="mongodb-metrics",state="active"} > 1000
             for: 10m
