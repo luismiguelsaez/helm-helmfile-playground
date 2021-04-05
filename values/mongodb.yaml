@@ -2,8 +2,13 @@
 
 auth:
   enabled: false
+  rootPassword: mdbrootpass
 
-architecture: standalone
+architecture: replicaset
+
+replicaCount: 3
+replicaSetName: rs0
+replicaSetHostnames: true
 
 podAnnotations: {}
 
@@ -31,14 +36,14 @@ metrics:
     rules:
       - name: mongodb
         rules:
-          - alert: Up
+          - alert: InstanceUp
             expr: mongodb_up{job="mongodb-metrics",state="active"} < 1
             for: 1m
             labels:
               severity: critical
             annotations:
               message: |
-                No instances UP
+                Instance {{ $labels.namespace }}/{{ $labels.pod }} down
           - alert: HighActiveConnectionCount
             expr: mongodb_connections{job="mongodb-metrics",state="active"} > 1000
             for: 10m
