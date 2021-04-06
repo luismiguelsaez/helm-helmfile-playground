@@ -2,11 +2,15 @@
 
 prometheus:
   prometheusSpec:
-    ruleNamespaceSelector: {}
+    ruleNamespaceSelector:
+      matchNames:
+        - monitoring
     ruleSelector:
       matchLabels:
         release: prometheus
-    serviceMonitorNamespaceSelector: {}
+    serviceMonitorNamespaceSelector:
+      matchNames:
+        - monitoring
     serviceMonitorSelector:
       matchLabels:
         release: prometheus
