@@ -14,6 +14,8 @@ releases:
     namespace: ingress-nginx
     chart: ingress-nginx/ingress-nginx
     version: 3.29.0
+    values:
+      - values/ingress-nginx.yaml
   # k create namespace monitoring
   # helm install --version 14.4.0 prometheus prometheus-community/kube-prometheus-stack -f values/prometheus.yaml -n monitoring
   - name: prometheus

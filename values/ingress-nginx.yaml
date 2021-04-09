@@ -1,0 +1,14 @@
+---
+
+controller:
+  metrics:
+    serviceMonitor:
+      enabled: false
+      additionalLabels: {}
+      namespace: ""
+      namespaceSelector: {}
+    prometheusRule:
+      enabled: false
+      additionalLabels: {}
+      # namespace: ""
+      rules: []
