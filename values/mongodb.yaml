@@ -36,26 +36,25 @@ metrics:
     rules:
       - name: mongodb
         rules:
+          - alert: MongodbDown
+            expr: mongodb_up == 0
+            for: 0m
+            labels:
+              severity: critical
+            annotations:
+              summary: MongoDB Down (instance {{`{{ $labels.instance }}`}})
+              description: |
+                MongoDB instance is down
+                VALUE = {{`{{ $value }}`}}
+                LABELS: {{`{{ $labels }}`}}
           - alert: MongodbReplicationLag
             expr: mongodb_mongod_replset_member_optime_date{state="PRIMARY"} - ON (set) mongodb_mongod_replset_member_optime_date{state="SECONDARY"} > 10
             for: 0m
             labels:
               severity: critical
             annotations:
-              summary: MongoDB replication lag greater than 10ms
-          - alert: HighActiveConnectionCount
-            expr: mongodb_connections{job="mongodb-metrics",state="active"} > 1000
-            for: 10m
-            labels:
-              severity: warning
-            annotations:
-              message: |
-                High active connection count {{`{{$labels.service}}`}}, check nodes for slowqueries
-          - alert: MetricsWTimeouts
-            expr: mongodb_mongod_metrics_get_last_error_wtimeouts_total{job="mongodb-metrics"} > 0
-            for: 10m
-            labels:
-              severity: warning
-            annotations:
-              message: |
-                Timeouts while getting metrics, check mongodb instance
+              summary: MongoDB replication lag (instance {{`{{ $labels.instance }}`}})
+              description: |
+                Mongodb replication lag is more than 10s
+                VALUE = {{`{{ $value }}`}}
+                LABELS: {{`{{ $labels }}`}}

@@ -23,6 +23,7 @@ releases:
     namespace: monitoring
     chart: prometheus-community/kube-prometheus-stack
     version: 14.5.0
+    wait: true
     values:
       - values/prometheus.yaml
   # k create namespace mongodb
