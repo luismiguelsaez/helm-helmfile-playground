@@ -50,7 +50,7 @@ metrics:
               severity: warning
             annotations:
               message: |
-                High active connection count, check nodes for slowqueries
+                High active connection count {{`{{$labels.service}}`}}, check nodes for slowqueries
           - alert: MetricsWTimeouts
             expr: mongodb_mongod_metrics_get_last_error_wtimeouts_total{job="mongodb-metrics"} > 0
             for: 10m
