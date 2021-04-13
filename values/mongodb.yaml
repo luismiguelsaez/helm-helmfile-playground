@@ -24,13 +24,13 @@ metrics:
     port: 9216
   serviceMonitor:
     enabled: true
-    namespace: monitoring
+    namespace: mongodb
     additionalLabels:
       # https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack#prometheusioscrape
       release: prometheus
   prometheusRule:
     enabled: true
-    namespace: monitoring
+    namespace: mongodb
     additionalLabels:
       release: prometheus
     rules:
