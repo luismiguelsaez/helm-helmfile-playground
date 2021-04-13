@@ -1,24 +1,21 @@
 ---
 
+alertmanager:
+  enabled: true
+
 prometheus:
   prometheusSpec:
-    ruleNamespaceSelector:
-      matchExpressions:
-        - key: name
-          operator: in
-          values:
-            - monitoring
-            - mongodb
+    ruleNamespaceSelector: {}
+      #matchExpressions:
+      #  - key: name
+      #    operator: in
+      #    values:
+      #      - monitoring
+      #      - mongodb
     ruleSelector:
       matchLabels:
         release: prometheus
-    serviceMonitorNamespaceSelector:
-      matchExpressions:
-        - key: name
-          operator: in
-          values:
-            - monitoring
-            - mongodb
+    serviceMonitorNamespaceSelector: {}
     serviceMonitorSelector:
       matchLabels:
         release: prometheus
