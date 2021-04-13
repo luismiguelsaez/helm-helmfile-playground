@@ -2,11 +2,23 @@
 
 prometheus:
   prometheusSpec:
-    ruleNamespaceSelector: {}
+    ruleNamespaceSelector:
+      matchExpressions:
+        - key: name
+          operator: in
+          values:
+            - monitoring
+            - mongodb
     ruleSelector:
       matchLabels:
         release: prometheus
-    serviceMonitorNamespaceSelector: {}
+    serviceMonitorNamespaceSelector:
+      matchExpressions:
+        - key: name
+          operator: in
+          values:
+            - monitoring
+            - mongodb
     serviceMonitorSelector:
       matchLabels:
         release: prometheus
